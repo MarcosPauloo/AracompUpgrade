@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 import { redirect } from 'next/navigation'
 import Button from '../../components/Button'
@@ -5,7 +7,18 @@ import { RiLogoutBoxLine } from "react-icons/ri";
 import Link from "next/link";
 
 export default function Home() {
+
   const user = 'Marcos Paulo'
+  const onclick2 = (type: string) => {
+    console.log('2')
+    if (type == 'Login') {
+        alert('Você fez o login')
+    } else if (type == 'Cadastro') {
+        alert('Você fez o cadastro')
+    } else {
+        alert('Desconectou-se')
+    }
+  }
 
   if (user) {
     return (
@@ -27,6 +40,7 @@ export default function Home() {
             type='Logout'
             icon={<RiLogoutBoxLine />}
             color='#F72585'
+            onclick={()=>onclick2}
           >
             <Link href={'/login'}>
               Sair da conta

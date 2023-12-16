@@ -1,22 +1,41 @@
+'use client'
 
-import React from 'react'
-import InputLogin from './InputLogin'
+import React, {useState, useEffect} from 'react'
+import Input from './Input'
 import Button from './Button'
 import { RiLogoutBoxLine } from "react-icons/ri";
 import FormLayout from '../layout/formLayout';
 
- function FormCadastro(){
+function FormCadastro() {
+    const [cadastro, setCadastro] = useState('')
+    const [password, setPassword] = useState('')
+
+    useEffect(() => {
+        console.log(cadastro)
+        console.log(password)
+    }, [cadastro, password])
+
+    function fazerCadastro() {
+        console.log("top")
+        if (cadastro === '' || password === '') {
+            alert('preencha todos os campos')
+        } else {
+            alert('cadastro realizado com sucesso')
+        }
+    }
+
     return (
         <FormLayout>
-            <InputLogin label='Usuário' />
-            <InputLogin label='Senha' />
-            <InputLogin label='Repetir senha' />
+            <Input label='Usuário' setTexto={setCadastro}/>
+            <Input label='Senha' setTexto={setPassword} />
+            <Input label='Repetir senha' setTexto={setPassword}/>
             
             <div className='w-full '>
                 <Button
                     type='Cadastro'
                     icon={<RiLogoutBoxLine />}
                     color='#7209B7'
+                    onclick={fazerCadastro}
                 >
                     Criar Conta
                 </Button>

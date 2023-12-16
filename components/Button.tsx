@@ -7,11 +7,13 @@ interface ButtonProps{
     children: React.ReactNode,
     icon: React.ReactNode,
     type: 'Login' | 'Logout' | 'Cadastro',
-    color: string
+    color: string, 
+    onclick: ()=>void,
 }
 
-export default function Button({ children, icon, type, color }: ButtonProps) {
-    const onclick = (type: string) => {
+export default function Button({ children, icon, type, color, onclick}: ButtonProps) {
+    function onclick2(type:string){
+        
         if (type == 'Login') {
             alert('Você fez o login')
         } else if (type == 'Cadastro') {
@@ -20,11 +22,22 @@ export default function Button({ children, icon, type, color }: ButtonProps) {
             alert('Desconectou-se')
         }
     }
+
+    // const onclick2 = (type: string) => {
+    //     if (type == 'Login') {
+    //         alert('Você fez o login')
+    //     } else if (type == 'Cadastro') {
+    //         alert('Você fez o cadastro')
+    //     } else {
+    //         alert('Desconectou-se')
+    //     }
+    // }
+
     //</div><div className="bg-[#F72585] h-12 m-3 rounded-md flex items-center justify-center ">
     return (
         <div className={`bg-[${color}] h-12 m-3 rounded-md flex items-center justify-center `}>
             
-            <Link href="/" onClick={()=>onclick(type)}>
+            <Link href="/" onClick={()=>onclick()}>
                 <div className="text-blue font-semibold flex flex-row justify-center items-center gap-2">
                     {icon}
                     {children}
